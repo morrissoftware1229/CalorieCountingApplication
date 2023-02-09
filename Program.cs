@@ -1,7 +1,15 @@
+using Microsoft.Extensions.Configuration;
+using Microsoft.EntityFrameworkCore;
+using CalorieCountingApplication.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+var provider = builder.Services.BuildServiceProvider();
+var configuration = provider.GetRequiredService<IConfiguration>();
+builder.Services.AddDbContext<CalorieCountingApplicationContext>(item => item.UseSqlServer(configuration.GetConnectionString("ProductionDB")));
 
 var app = builder.Build();
 
