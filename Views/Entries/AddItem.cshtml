@@ -1,5 +1,21 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model CalorieCountingApplication.ViewModels.Entries;
+
+<form asp-action="PostItem">
+    <label for="FoodOrExercise">Please Select Food or Exercise</label>
+    <br />
+    <select id="FoodOrExercise">
+        <option>Exercise</option>
+        <option>Food</option>
+    </select>
+    <br />
+    <label for="FoodAmount">Amount</label>
+    <input type="number" id="FoodAmount" />
+    <br />
+    <label for="CalorieCount">Calories</label>
+    <input type="number" id="CalorieCount" />
+    <br />
+    <label for="DateTime">Choose a date and time</label>
+    <input type="datetime-local" id="DateTime" />
+    <br />
+    <input type="submit" />
+</form>
