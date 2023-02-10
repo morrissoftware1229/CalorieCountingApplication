@@ -1,21 +1,75 @@
 ﻿@model CalorieCountingApplication.ViewModels.Entries;
 
-<form asp-action="PostItem">
-    <label for="FoodOrExercise">Please Select Food or Exercise</label>
-    <br />
-    <select id="FoodOrExercise">
-        <option>Exercise</option>
-        <option>Food</option>
-    </select>
-    <br />
-    <label for="FoodAmount">Amount</label>
-    <input type="number" id="FoodAmount" />
-    <br />
-    <label for="CalorieCount">Calories</label>
-    <input type="number" id="CalorieCount" />
-    <br />
-    <label for="DateTime">Choose a date and time</label>
-    <input type="datetime-local" id="DateTime" />
-    <br />
-    <input type="submit" />
-</form>
+<body>
+    <script type="text/javascript">
+        function addExerciseForm() {
+            document.getElementById("insertHere").innerHTML = "";
+            let exerciseAmountLabel = document.createElement("label");
+            exerciseAmountLabel.htmlFor = "ExerciseAmount";
+            foodAmountLabel.innerText = "Amount of Exercise";
+            let exerciseAmountInput = document.createElement("input");
+            exerciseAmountInput.type = "number";
+            exerciseAmountInput.id = "ExerciseAmount";
+            let exerciseAmountBreak = document.createElement("br");
+            let calorieCountLabel = document.createElement("label");
+            calorieCountLabel.htmlFor = "ExerciseCalorieCount";
+            calorieCountLabel.innerText = "Calories";
+            let calorieCountInput = document.createElement("input");
+            calorieCountInput.type = "number";
+            calorieCountInput.id = "ExerciseCalorieCount";
+            let calorieCountBreak = document.createElement("br");
+            let dateTimeLabel = document.createElement("label");
+            dateTimeLabel.htmlFor = "ExerciseDateTime";
+            dateTimeLabel.innerText = "Choose a date and time";
+            let dateTimeInput = document.createElement("input");
+            dateTimeInput.type = "datetime-local";
+            dateTimeInput.id = "ExerciseDateTime";
+            let dateTimeBreak = document.createElement("br");
+            let submitButton = document.createElement("input");
+            submitButton.type = "submit";
+            document.getElementById("insertHere").append(exerciseAmountLabel, exerciseAmountInput, exerciseAmountBreak, calorieCountLabel, calorieCountInput, calorieCountBreak, dateTimeLabel, dateTimeBreak, dateTimeInput, submitButton);
+        };
+
+        function addFoodForm() {
+            document.getElementById("insertHere").innerHTML = "";
+            let foodAmountLabel = document.createElement("label");
+            foodAmountLabel.htmlFor = "FoodAmount";
+            foodAmountLabel.innerText = "Amount of Food";
+            let foodAmountInput = document.createElement("input");
+            foodAmountInput.type = "number";
+            foodAmountInput.id = "FoodAmount";
+            let foodAmountBreak = document.createElement("br");
+            let calorieCountLabel = document.createElement("label");
+            calorieCountLabel.htmlFor = "FoodCalorieCount";
+            calorieCountLabel.innerText = "Calories";
+            let calorieCountInput = document.createElement("input");
+            calorieCountInput.type = "number";
+            calorieCountInput.id = "FoodCalorieCount";
+            let calorieCountBreak = document.createElement("br");
+            let dateTimeLabel = document.createElement("label");
+            dateTimeLabel.htmlFor = "FoodDateTime";
+            dateTimeLabel.innerText = "Choose a date and time";
+            let dateTimeInput = document.createElement("input");
+            dateTimeInput.type = "datetime-local";
+            dateTimeInput.id = "FoodDateTime";
+            let dateTimeBreak = document.createElement("br");
+            let submitButton = document.createElement("input");
+            submitButton.type = "submit";
+            let deleteThis = document.createElement("p");
+            deleteThis.innerText = "Proof it's working"
+            document.getElementById("insertHere").append(foodAmountLabel, foodAmountInput, foodAmountBreak, calorieCountLabel, calorieCountInput, calorieCountBreak, dateTimeLabel, dateTimeBreak, dateTimeInput, submitButton)
+            document.getElementById("insertHere").append(deleteThis);
+        };
+    </script>
+    <form asp-action="PostItem">
+        <label for="FoodOrExercise">Please Select Food or Exercise</label>
+        <br />
+        <select id="FoodOrExercise">
+            <option onchange="addExerciseForm()">Exercise</option>
+            <option onchange="addFoodForm()">Food</option>
+        </select>
+        <br />
+        <div id="insertHere">
+        </div>
+    </form>
+</body>
