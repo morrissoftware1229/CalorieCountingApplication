@@ -2,6 +2,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
 using CalorieCountingApplication.Models;
 
+//Need to add SeeDailyLog View and logic
+//Need to add migrations
+//Need to add logic for Entries controller to push PostItem to DB
+//Need to add default form for Entries/AddItem before onChange to Select element
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.

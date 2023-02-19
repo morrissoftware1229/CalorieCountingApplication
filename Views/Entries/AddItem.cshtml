@@ -2,11 +2,24 @@
 
 <body>
     <script type="text/javascript">
+        function callFunction() {
+            if (document.getElementById("FoodOrExercise").value == "Food") {
+                addFoodForm();
+            }
+            else if (document.getElementById("FoodOrExercise").value == "Exercise") {
+                addExerciseForm();
+            }
+            else {
+                console.log("Function being called but not working");
+            }
+        };
+
+        //There must be a cleaner way to write this function and addFoodForm
         function addExerciseForm() {
             document.getElementById("insertHere").innerHTML = "";
             let exerciseAmountLabel = document.createElement("label");
             exerciseAmountLabel.htmlFor = "ExerciseAmount";
-            foodAmountLabel.innerText = "Amount of Exercise";
+            exerciseAmountLabel.innerText = "Amount of Exercise";
             let exerciseAmountInput = document.createElement("input");
             exerciseAmountInput.type = "number";
             exerciseAmountInput.id = "ExerciseAmount";
@@ -55,20 +68,18 @@
             let dateTimeBreak = document.createElement("br");
             let submitButton = document.createElement("input");
             submitButton.type = "submit";
-            let deleteThis = document.createElement("p");
-            deleteThis.innerText = "Proof it's working"
             document.getElementById("insertHere").append(foodAmountLabel, foodAmountInput, foodAmountBreak, calorieCountLabel, calorieCountInput, calorieCountBreak, dateTimeLabel, dateTimeBreak, dateTimeInput, submitButton)
-            document.getElementById("insertHere").append(deleteThis);
         };
     </script>
     <form asp-action="PostItem">
         <label for="FoodOrExercise">Please Select Food or Exercise</label>
         <br />
-        <select id="FoodOrExercise">
-            <option onchange="addExerciseForm()">Exercise</option>
-            <option onchange="addFoodForm()">Food</option>
+        <select id="FoodOrExercise" onchange="callFunction()">
+            <option>Exercise</option>
+            <option>Food</option>
         </select>
         <br />
+        <!--Need to add Food or Exercises dropdowns with values from DB once choice is selected-->
         <div id="insertHere">
         </div>
     </form>
