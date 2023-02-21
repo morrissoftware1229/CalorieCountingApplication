@@ -1,4 +1,5 @@
 ﻿using CalorieCountingApplication.Models;
+using CalorieCountingApplication.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,9 +14,12 @@ namespace CalorieCountingApplication.Controllers
             _context = context;
         }
 
-        public IActionResult AddItem()
+        public async Task<IActionResult> AddItem()
         {
-            return View();
+            Entry entry = new Entry();
+            entry.Foods = new List<Food>(_context.Foods);
+            entry.Exercises = new List<Exercise>(_context.Exercises);
+            return View(entry);
         }
 
         public async Task<IActionResult> PostFoodItem([Bind("FoodEntryId,Food,Amount,CalorieCount,DateTime")] FoodEntry foodEntry)

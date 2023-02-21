@@ -1,4 +1,4 @@
-﻿@model CalorieCountingApplication.ViewModels.Entries;
+﻿@model CalorieCountingApplication.ViewModels.Entry;
 
 <body>
     <script type="text/javascript">
@@ -17,6 +17,12 @@
         //There must be a cleaner way to write this function and addFoodForm
         function addExerciseForm() {
             document.getElementById("insertHere").innerHTML = "";
+            let exerciseChoice = document.createElement("select");
+            @foreach(Exercise exercise in Model.Exercises)
+            {
+                <option>@exercise.Name</option>
+            };
+            let exerciseChoiceBreak = document.createElement("br");
             let exerciseAmountLabel = document.createElement("label");
             exerciseAmountLabel.htmlFor = "ExerciseAmount";
             exerciseAmountLabel.innerText = "Amount of Exercise";
@@ -40,11 +46,17 @@
             let dateTimeBreak = document.createElement("br");
             let submitButton = document.createElement("input");
             submitButton.type = "submit";
-            document.getElementById("insertHere").append(exerciseAmountLabel, exerciseAmountInput, exerciseAmountBreak, calorieCountLabel, calorieCountInput, calorieCountBreak, dateTimeLabel, dateTimeBreak, dateTimeInput, submitButton);
+            document.getElementById("insertHere").append(exerciseChoice, exerciseChoiceBreak, exerciseAmountLabel, exerciseAmountInput, exerciseAmountBreak, calorieCountLabel, calorieCountInput, calorieCountBreak, dateTimeLabel, dateTimeBreak, dateTimeInput, submitButton);
         };
 
         function addFoodForm() {
             document.getElementById("insertHere").innerHTML = "";
+            let foodChoice = document.createElement("select")
+            @foreach (Food food in Model.Foods)
+            {
+                        <option>@food.Name</option>
+            }
+            let foodChoiceBreak = document.createElement("br");
             let foodAmountLabel = document.createElement("label");
             foodAmountLabel.htmlFor = "FoodAmount";
             foodAmountLabel.innerText = "Amount of Food";
@@ -68,7 +80,7 @@
             let dateTimeBreak = document.createElement("br");
             let submitButton = document.createElement("input");
             submitButton.type = "submit";
-            document.getElementById("insertHere").append(foodAmountLabel, foodAmountInput, foodAmountBreak, calorieCountLabel, calorieCountInput, calorieCountBreak, dateTimeLabel, dateTimeBreak, dateTimeInput, submitButton)
+            document.getElementById("insertHere").append(foodChoice, foodChoiceBreak, foodAmountLabel, foodAmountInput, foodAmountBreak, calorieCountLabel, calorieCountInput, calorieCountBreak, dateTimeLabel, dateTimeBreak, dateTimeInput, submitButton)
         };
     </script>
     <form asp-action="PostItem">
